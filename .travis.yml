@@ -1,0 +1,16 @@
+# this file is only used for GitHub
+# it is not related to your learning
+
+language: java
+
+script:
+# test the java components
+- ./gradlew test
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/

@@ -3,7 +3,6 @@ bin/
 out/
 .classpath
 .project
-gradle/
 .gradle/
 .idea/
 .settings/
