@@ -212,7 +212,7 @@ public class GreetingClient {
             ).build());
             System.out.println(response.getResult());
         } catch (StatusRuntimeException e) {
-            if (e.getStatus() == Status.DEADLINE_EXCEEDED) {
+            if (e.getStatus().getCode() == Status.Code.DEADLINE_EXCEEDED) {
                 System.out.println("Deadline has been exceeded, we don't want the response");
             } else {
                 e.printStackTrace();
@@ -228,7 +228,7 @@ public class GreetingClient {
             ).build());
             System.out.println(response.getResult());
         } catch (StatusRuntimeException e) {
-            if (e.getStatus() == Status.DEADLINE_EXCEEDED) {
+            if (e.getStatus().getCode() == Status.Code.DEADLINE_EXCEEDED) {
                 System.out.println("Deadline has been exceeded, we don't want the response");
             } else {
                 e.printStackTrace();
