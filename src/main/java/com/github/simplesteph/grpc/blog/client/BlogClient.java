@@ -1,9 +1,6 @@
 package com.github.simplesteph.grpc.blog.client;
 
-import com.proto.blog.Blog;
-import com.proto.blog.BlogServiceGrpc;
-import com.proto.blog.CreateBlogRequest;
-import com.proto.blog.CreateBlogResponse;
+import com.proto.blog.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -38,6 +35,24 @@ public class BlogClient {
 
         System.out.println("Received create blog response");
         System.out.println(createResponse.toString());
+
+        String blogId = createResponse.getBlog().getId();
+
+        System.out.println("Reading blog....");
+
+        ReadBlogResponse readBlogResponse = blogClient.readBlog(ReadBlogRequest.newBuilder()
+                .setBlogId(blogId)
+                .build());
+
+        System.out.println(readBlogResponse.toString());
+
+        // trigger a not found error
+//        System.out.println("Reading blog with non existing id....");
+//
+//        ReadBlogResponse readBlogResponseNotFound = blogClient.readBlog(ReadBlogRequest.newBuilder()
+//                .setBlogId("5bd83b5cf476074e2bff3495")
+//                .build());
+
 
     }
 }
