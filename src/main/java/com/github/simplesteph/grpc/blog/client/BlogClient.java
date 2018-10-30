@@ -81,5 +81,10 @@ public class BlogClient {
 //                .setBlogId(blogId)
 //                .build());
 
+        // we list the blogs in our database
+        blogClient.listBlog(ListBlogRequest.newBuilder().build()).forEachRemaining(
+                listBlogResponse -> System.out.println(listBlogResponse.getBlog().toString())
+        );
+
     }
 }

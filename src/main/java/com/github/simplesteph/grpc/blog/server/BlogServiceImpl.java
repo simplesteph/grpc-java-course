@@ -154,7 +154,7 @@ public class BlogServiceImpl extends BlogServiceGrpc.BlogServiceImplBase {
 
     @Override
     public void deleteBlog(DeleteBlogRequest request, StreamObserver<DeleteBlogResponse> responseObserver) {
-        System.out.println("Received Delete Blog Response");
+        System.out.println("Received Delete Blog Request");
 
         String blogId = request.getBlogId();
         DeleteResult result = null;
@@ -186,5 +186,16 @@ public class BlogServiceImpl extends BlogServiceGrpc.BlogServiceImplBase {
             responseObserver.onCompleted();
         }
 
+    }
+
+    @Override
+    public void listBlog(ListBlogRequest request, StreamObserver<ListBlogResponse> responseObserver) {
+        System.out.println("Received List Blog Request");
+
+        collection.find().iterator().forEachRemaining(document -> responseObserver.onNext(
+                ListBlogResponse.newBuilder().setBlog(documentToBlog(document)).build()
+        ));
+
+        responseObserver.onCompleted();
     }
 }
