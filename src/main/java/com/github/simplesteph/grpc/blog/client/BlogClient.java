@@ -53,6 +53,19 @@ public class BlogClient {
 //                .setBlogId("5bd83b5cf476074e2bff3495")
 //                .build());
 
+        Blog newBlog = Blog.newBuilder()
+                .setId(blogId)
+                .setAuthorId("Changed Author")
+                .setTitle("New blog (updated)!")
+                .setContent("Hello world this is my first blog! I've added some more content")
+                .build();
+
+        System.out.println("Updating blog...");
+        UpdateBlogResponse updateBlogResponse = blogClient.updateBlog(
+                UpdateBlogRequest.newBuilder().setBlog(newBlog).build());
+
+        System.out.println("Updated blog");
+        System.out.println(updateBlogResponse.toString());
 
     }
 }
